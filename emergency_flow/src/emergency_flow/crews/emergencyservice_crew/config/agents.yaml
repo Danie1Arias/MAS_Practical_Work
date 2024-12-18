@@ -1,6 +1,6 @@
 poem_writer:
   role: >
-    CrewAI Poem Writer
+    Call Center Manager
   goal: >
     Generate a funny, light heartedpoem about how CrewAI 
     is awesome with a sentence count of {sentence_count}
