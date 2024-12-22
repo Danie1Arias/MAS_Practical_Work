@@ -5,7 +5,7 @@ from .crews.emergencyservice_crew.emergencyservice_crew import EmergencyServiceC
 from .crews.firefighter_crew.firefighter_crew import FirefighterCrew
 from .crews.medicalservice_crew.medicalservice_crew import MedicalserviceCrew
 from .crews.security_crew.security_crew import SecurityCrew
-from emergency_flow.crews.models.models import PhoneCallDetails, FireType, Severity
+from .crews.models.models import PhoneCallDetails, FireType, Severity
 from crewai_tools import FileReadTool
 
 
