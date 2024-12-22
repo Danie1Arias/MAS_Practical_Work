@@ -1,7 +1,9 @@
-write_poem:
+read_emergency_report:
   description: >
-    Write a poem about how CrewAI is awesome.
-    Ensure the poem is engaging and adheres to the specified sentence count of {sentence_count}.
+    Extract relevant emergency details from a markdown file 
+    (Fire type, Location X, Location Y, Injured people, Fire 
+    Severity) and convert them into structured Pydantic outputs.
   expected_output: >
-    A beautifully crafted poem about CrewAI, with exactly {sentence_count} sentences.
-  agent: poem_writer
+    A structured object containing details like Fire type, 
+    Location (X, Y), Injured people count, and Fire Severity.
+  agent: call_center_manager

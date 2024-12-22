@@ -1,0 +1,12 @@
+{
+    "general_hospital": {
+        "latitude": 39.46798,
+        "longitude": -0.40776,
+        "beds_available": 10
+    },
+    "university_clinical_hospital": {
+        "latitude": 39.47882,
+        "longitude": -0.36078,
+        "beds_available": 15
+    }
+}
