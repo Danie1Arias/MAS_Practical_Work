@@ -6,6 +6,7 @@ from .crews.firefighter_crew.firefighter_crew import FirefighterCrew
 from .crews.medicalservice_crew.medicalservice_crew import MedicalserviceCrew
 from .crews.security_crew.security_crew import SecurityCrew
 from emergency_flow.crews.models.models import PhoneCallDetails, FireType, Severity
+from crewai_tools import FileReadTool
 
 
 class EmergencyState(BaseModel):
@@ -22,10 +23,14 @@ class EmergencyFlow(Flow[EmergencyState]):
     def attend_emergency_call(self):
         """Receives the emergency call and extract the details"""
         print("Emergency call received. Extracting relevant details.")
+        
+        result = EmergencyServiceCrew().crew().kickoff(inputs={
+            'file_path': '/inputs/emergency_report.md'
+        })
 
-        # TODO: Instead of using a model, we can exract the data from a file. Phone Tool
-        # DETAILS: https://docs.crewai.com/tools/filereadtool
+        print(result)
 
+        # This code below shold be provided by the EmergencyServiceCrew
         self.state.phone_call_details = PhoneCallDetails(
                 location = "Location",
                 fire_type = FireType.ORDINARY,
