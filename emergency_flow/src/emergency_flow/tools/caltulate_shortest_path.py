@@ -20,11 +20,13 @@ def compute_shortest_path(graph, coord1, coord2):
     node2 = ox.distance.nearest_nodes(graph, X=coord2[1], Y=coord2[0])
 
     # Compute the shortest path between the nodes
+    # change to weight='travel-time' for calculating a path in minutes
     distance = nx.shortest_path_length(graph, node1, node2, weight='length')
-    path = nx.shortest_path(graph, node1, node2, weight='length')
+    path = nx.shortest_path(graph, node1, node2, weight='length') 
 
     return distance, path
 
+"""
 # Calculate distance between two points - Example of use
 
 # Read the city graph
@@ -44,3 +46,4 @@ else:
 
 # Draw shortest path on a map
 ox.plot_graph_route(graph, path, route_linewidth=4, node_size=0)
+"""
