@@ -1,6 +1,8 @@
 from crewai import Agent, Crew, Process, Task
-from crewai.project import CrewBase, agent, crew, task, before_kickoff, after_kickoff
+from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import FileReadTool
+from emergency_flow.crews.models.models import PhoneCallDetails
+
 
 @CrewBase
 class EmergencyServiceCrew():
@@ -10,7 +12,7 @@ class EmergencyServiceCrew():
 	tasks_config = 'config/tasks.yaml'
 
 	@agent
-	def call_center_agent(self) -> Agent:
+	def call_center_manager(self) -> Agent:
 		"""Agent that reads the emergency report and extracts information"""
 		return Agent(
 			config=self.agents_config['call_center_manager'],
@@ -22,9 +24,7 @@ class EmergencyServiceCrew():
 	def read_emergency_report(self) -> Task:
 		return Task(
 			config=self.tasks_config['read_emergency_report'],
-			expected_output="""
-			A map of the most important varaibles (Fire type, Location X, 
-			Location Y, Injured people, Fire Severity) and their values"""
+			output_pydantic=PhoneCallDetails,
 		)
 
 	@crew

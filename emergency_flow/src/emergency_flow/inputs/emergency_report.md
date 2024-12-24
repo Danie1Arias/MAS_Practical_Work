@@ -2,11 +2,11 @@
 
 ## Fire Incident Overview
 
-- **Fire Type:** Gas explosion
-- **X Location:** 39.4699
-- **Y Location:** -0.3763
+- **Fire Type:** 3
+- **Longitude:** 39.46061969757309
+- **Latitude:** -0.36332447406737145
 - **Injured People:** 12
-- **Fire Severity:** High
+- **Fire Severity:** 1
 
 ## Additional Information
 

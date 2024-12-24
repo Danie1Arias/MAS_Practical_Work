@@ -1,9 +1,9 @@
 read_emergency_report:
   description: >
     Extract relevant emergency details from a markdown file 
-    (Fire type, Location X, Location Y, Injured people, Fire 
+    (Fire type, Longitude, Latitude, Injured people, Fire 
     Severity) and convert them into structured Pydantic outputs.
   expected_output: >
     A structured object containing details like Fire type, 
-    Location (X, Y), Injured people count, and Fire Severity.
+    Longitude, Latitude, Injured people count, and Fire Severity.
   agent: call_center_manager

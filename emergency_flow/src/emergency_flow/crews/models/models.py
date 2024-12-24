@@ -12,7 +12,8 @@ class Severity():
     LOW = 3
 
 class PhoneCallDetails(BaseModel):
-    location: str 
+    longitude: float
+    latitude: float
     fire_type: int 
     severity: int 
     people_in_danger: int 

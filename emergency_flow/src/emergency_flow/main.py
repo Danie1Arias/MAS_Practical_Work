@@ -7,6 +7,7 @@ from .crews.medicalservice_crew.medicalservice_crew import MedicalserviceCrew
 from .crews.security_crew.security_crew import SecurityCrew
 from .crews.models.models import PhoneCallDetails, FireType, Severity
 from crewai_tools import FileReadTool
+import os
 
 
 class EmergencyState(BaseModel):
@@ -24,21 +25,19 @@ class EmergencyFlow(Flow[EmergencyState]):
         """Receives the emergency call and extract the details"""
         print("Emergency call received. Extracting relevant details.")
         
+        file_path = os.path.join(os.path.dirname(__file__), 'inputs', 'emergency_report.md')
         result = EmergencyServiceCrew().crew().kickoff(inputs={
-            'file_path': '/inputs/emergency_report.md'
+            'file_path': file_path
         })
 
-        print(result)
-
-        # This code below shold be provided by the EmergencyServiceCrew
         self.state.phone_call_details = PhoneCallDetails(
-                location = "Location",
-                fire_type = FireType.ORDINARY,
-                severity = Severity.HIGH,
-                people_in_danger= 5
-            )
-        
-        print(f"Detials extracted: {self.state.phone_call_details}")
+            longitude=result['longitude'],
+            latitude=result['latitude'],
+            fire_type=result['fire_type'],
+            severity=result['severity'],
+            people_in_danger=result['people_in_danger']
+        )
+
 
     @listen(attend_emergency_call)
     def activate_relevant_crews(self):
@@ -67,8 +66,6 @@ class EmergencyFlow(Flow[EmergencyState]):
             self.state.security_crew_active = True
             # SecurityCrew().crew().kickoff(inputs=self.state.phone_call_details)
 
-
-    # TODO: (Proposal) Create an agent that creats a report of the emergency
 
 
 def kickoff():
