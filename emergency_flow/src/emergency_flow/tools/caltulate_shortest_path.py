@@ -1,6 +1,8 @@
 import osmnx as ox
 import networkx as nx
+from crewai.tools import tool
 
+@tool("OSMnx Shortest Path Tool")
 def compute_shortest_path(graph, coord1, coord2):
     """
     Compute the shortest distance between two locations in a city.

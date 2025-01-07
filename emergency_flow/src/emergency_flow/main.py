@@ -6,7 +6,6 @@ from .crews.firefighter_crew.firefighter_crew import FirefighterCrew
 from .crews.medicalservice_crew.medicalservice_crew import MedicalserviceCrew
 from .crews.security_crew.security_crew import SecurityCrew
 from .crews.models.models import PhoneCallDetails, FireType, Severity
-from crewai_tools import FileReadTool
 import os
 
 

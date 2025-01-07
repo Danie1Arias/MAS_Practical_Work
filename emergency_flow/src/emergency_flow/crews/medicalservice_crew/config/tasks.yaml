@@ -1,17 +1,28 @@
-research_task:
+drive_to_emergency_site:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is 2024.
+    Read the ambulances.json file with the FileReadTool tool to find out if there are 
+    ambulances_available and get the origin longitude and latitude. Then, using the 
+    valencia.graphml file and the OSMnx Shortest Path Tool, find the most optimal 
+    route to the destination (longitude and latitude of the PydanticOutput input to the Crew).
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
+    Print via terminal the details of the origin, destination coordinates and the time and 
+    distance from one point to another
+  agent: ambulance_driver
 
-reporting_task:
+treat_injured_people:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    Read the number of people_in_danger and write to the terminal some of the injuries that 
+    these people could have given the fire_type.
   expected_output: >
-    A fully fledge reports with the mains topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+    Print a list of the 5 most common types of injuries on the terminal and end with a 
+    sentence saying that the people are already inside the ambulance.
+  agent: paramedical
+
+#  drive_to_hospital:
+#  description: >
+#    Conduct a thorough research about {topic}
+#    Make sure you find any interesting and relevant information given
+#    the current year is 2024.
+#  expected_output: >
+#    A list with 10 bullet points of the most relevant information about {topic}
+#  agent: ambulance_driver
