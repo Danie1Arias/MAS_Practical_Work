@@ -1,11 +1,13 @@
 [project]
 name = "emergency_flow"
 version = "0.1.0"
-description = "emergency_flow is an structured flow capable of managing fire emergency situations"
+description = "emergency_flow is a structured flow capable of managing fire emergency situations"
 authors = [{ name = "Your Name", email = "you@example.com" }]
 requires-python = ">=3.10,<=3.13"
 dependencies = [
     "crewai[tools]>=0.79.4,<1.0.0",
+    "osmnx>=1.5.0",
+    "networkx>=3.0"
 ]
 
 [project.scripts]
@@ -15,3 +17,6 @@ plot = "emergency_flow.main:plot"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.crewai]
+tool_modules = ["emergency_flow.tools"]
