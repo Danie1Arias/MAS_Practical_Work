@@ -2,10 +2,10 @@ from typing import Type
 from crewai.tools import BaseTool
 from pydantic import BaseModel, Field
 import osmnx as ox
+import os
 
 class ShortestPathInput(BaseModel):
     """Input schema for ShortestPathTool."""
-    graph_path: str = Field(..., description="Path to the OSMnx graph file in .graphml format.")
     longitude_origin: float = Field(..., description="X coordinate from the origin location.")
     latitude_origin: float = Field(..., description="Y coordinate from the origin location.")
     longitude_destination: float = Field(..., description="X coordinate from the destination location.")
@@ -19,10 +19,11 @@ class ShortestPathTool(BaseTool):
     )
     args_schema: Type[BaseModel] = ShortestPathInput
 
-    def _run(self, graph_path: str, longitude_origin: float, latitude_origin: float,
+    def _run(self, longitude_origin: float, latitude_origin: float,
              longitude_destination: float, latitude_destination: float) -> dict:
         try:
-            graph = ox.load_graphml(filepath=graph_path)
+            file_path = os.path.join('..', 'inputs', 'valencia.graphml')
+            graph = ox.load_graphml(filepath=file_path)
             graph = ox.routing.add_edge_speeds(graph)
             graph = ox.routing.add_edge_travel_times(graph)
 

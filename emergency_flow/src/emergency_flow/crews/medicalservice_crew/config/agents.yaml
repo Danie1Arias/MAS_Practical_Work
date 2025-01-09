@@ -9,6 +9,7 @@ ambulance_driver:
     You are an experienced ambulance driver from the Lapeña centre in Valencia. 
     You have extensive experience in finding optimal and safe routes to transport 
     paramedics and injured people.
+  max_iter: 5
 
 paramedical:
   role: >
@@ -20,3 +21,4 @@ paramedical:
   backstory: >
     You are an expert paramedic specializing in first emergencies. You are able to treat 
     injured people and transport them to the ambulance very quickly and effectively.
+  max_iter: 5

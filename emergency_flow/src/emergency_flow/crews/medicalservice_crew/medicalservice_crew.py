@@ -41,6 +41,13 @@ class MedicalserviceCrew:
             config=self.tasks_config['treat_injured_people'],
             output_file='report.md'
         )
+    
+    @task
+    def drive_to_hospital(self) -> Task:
+        print("Driving to the hospital")
+        return Task(
+            config=self.tasks_config['drive_to_hospital'],
+        )
 
     @crew
     def crew(self) -> Crew:

@@ -3,8 +3,7 @@ drive_to_emergency_site:
     Use the FileReadTool to load data from the 'ambulances.json' file in {data_path} and determine 
     if there are any available ambulances. Retrieve the origin's coordinates 
     (longitude and latitude) from the file. Then, with the OSMnx Shortest Path Tool, 
-    calculate the most efficient route from the origin to the destination using the 
-    'valencia.graphml' map file in {graph_path} . The destination coordinates are provided in 
+    calculate the most efficient route from the origin to the destination. The destination coordinates are provided in 
     {phone_call_details} (latitude and longitude). Ensure the route is optimized for 
     the shortest distance or time.
   expected_output: >
@@ -36,7 +35,7 @@ drive_to_hospital:
     Plan the transport of injured individuals from the emergency site to the hospital.
     Consider the destination hospital's location, the current position of the ambulance, 
     and traffic conditions if applicable. Use the OSMnx Shortest Path Tool to find the 
-    optimal route using the `valencia.graphml` file.
+    optimal route.
   expected_output: >
     Print to the terminal:
     - The start and destination coordinates of the trip

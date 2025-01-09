@@ -65,8 +65,7 @@ class EmergencyFlow(Flow[EmergencyState]):
             self.state.medicalservices_crew_active = True
             MedicalserviceCrew().crew().kickoff(inputs={
                 "phone_call_details": self.state.phone_call_details,
-                "data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'ambulances.json'),
-                "graph_path": os.path.join(os.path.dirname(__file__), 'inputs', 'valencia.graphml')
+                "data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'ambulances.json')
             })
             
 
