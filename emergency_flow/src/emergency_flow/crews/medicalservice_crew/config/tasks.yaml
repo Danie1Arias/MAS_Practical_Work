@@ -1,28 +1,45 @@
 drive_to_emergency_site:
   description: >
-    Read the ambulances.json file with the FileReadTool tool to find out if there are 
-    ambulances_available and get the origin longitude and latitude. Then, using the 
-    valencia.graphml file and the OSMnx Shortest Path Tool, find the most optimal 
-    route to the destination (longitude and latitude of the PydanticOutput input to the Crew).
+    Use the FileReadTool to load data from the 'ambulances.json' file in {data_path} and determine 
+    if there are any available ambulances. Retrieve the origin's coordinates 
+    (longitude and latitude) from the file. Then, with the OSMnx Shortest Path Tool, 
+    calculate the most efficient route from the origin to the destination using the 
+    'valencia.graphml' map file in {graph_path} . The destination coordinates are provided in 
+    {phone_call_details} (latitude and longitude). Ensure the route is optimized for 
+    the shortest distance or time.
   expected_output: >
-    Print via terminal the details of the origin, destination coordinates and the time and 
-    distance from one point to another
+    Print the following information to the terminal:
+    - The origin coordinates (longitude and latitude)
+    - The destination coordinates (longitude and latitude) from {phone_call_details}
+    - The estimated travel distance between the two points
+    Ensure the output is formatted for readability.
   agent: ambulance_driver
 
 treat_injured_people:
   description: >
-    Read the number of people_in_danger and write to the terminal some of the injuries that 
-    these people could have given the fire_type.
+    Analyze the {phone_call_details} to extract the number of 'people_in_danger' 
+    and the type of fire ('fire_type'). Using this information, infer the potential 
+    types of injuries that could occur in such a situation. For example, consider 
+    injuries related to burns, smoke inhalation, or structural hazards based on 
+    the 'fire_type' from {phone_call_details}.
   expected_output: >
-    Print a list of the 5 most common types of injuries on the terminal and end with a 
-    sentence saying that the people are already inside the ambulance.
+    Print to the terminal:
+    - A list of the 5 most common types of injuries that the affected people may have 
+      suffered in this situation
+    - A closing statement that confirms the injured individuals have been safely 
+      transported into the ambulance
+    Format the response clearly and concisely for emergency team readability.
   agent: paramedical
 
-#  drive_to_hospital:
-#  description: >
-#    Conduct a thorough research about {topic}
-#    Make sure you find any interesting and relevant information given
-#    the current year is 2024.
-#  expected_output: >
-#    A list with 10 bullet points of the most relevant information about {topic}
-#  agent: ambulance_driver
+drive_to_hospital:
+  description: >
+    Plan the transport of injured individuals from the emergency site to the hospital.
+    Consider the destination hospital's location, the current position of the ambulance, 
+    and traffic conditions if applicable. Use the OSMnx Shortest Path Tool to find the 
+    optimal route using the `valencia.graphml` file.
+  expected_output: >
+    Print to the terminal:
+    - The start and destination coordinates of the trip
+    - The estimated time and distance to the hospital
+    - A statement confirming arrival at the hospital
+  agent: ambulance_driver

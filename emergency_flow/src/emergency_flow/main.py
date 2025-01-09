@@ -51,13 +51,6 @@ class EmergencyFlow(Flow[EmergencyState]):
             # FirefighterCrew().crew().kickoff(inputs=self.state.phone_call_details)
 
         if (
-            self.state.phone_call_details.people_in_danger > 0
-        ): 
-            print("- Medical Services Crew Active")
-            self.state.medicalservices_crew_active = True
-            # MedicalserviceCrew().crew().kickoff(inputs=self.state.phone_call_details)
-
-        if (
             self.state.phone_call_details.severity == Severity.MEDIUM or
             self.state.phone_call_details.severity == Severity.HIGH
         ): 
@@ -65,6 +58,17 @@ class EmergencyFlow(Flow[EmergencyState]):
             self.state.security_crew_active = True
             # SecurityCrew().crew().kickoff(inputs=self.state.phone_call_details)
 
+        if (
+            self.state.phone_call_details.people_in_danger > 0
+        ): 
+            print("- Medical Services Crew Active")
+            self.state.medicalservices_crew_active = True
+            MedicalserviceCrew().crew().kickoff(inputs={
+                "phone_call_details": self.state.phone_call_details,
+                "data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'ambulances.json'),
+                "graph_path": os.path.join(os.path.dirname(__file__), 'inputs', 'valencia.graphml')
+            })
+            
 
 
 def kickoff():

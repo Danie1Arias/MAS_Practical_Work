@@ -34,5 +34,5 @@ class EmergencyServiceCrew():
 			agents=self.agents, 
 			tasks=self.tasks, 
 			process=Process.sequential,
-			verbose=False,
+			verbose=True,
 		)

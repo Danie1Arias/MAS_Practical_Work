@@ -2,7 +2,7 @@
 
 ## Fire Incident Overview
 
-- **Fire Type:** 3
+- **Fire Type:** GAS
 - **Longitude:** 39.46061969757309
 - **Latitude:** -0.36332447406737145
 - **Injured People:** 12

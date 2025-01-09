@@ -10,3 +10,4 @@ call_center_manager:
     handle emergency calls. With a sharp analytical mind, you excel at 
     interpreting data, ensuring clear and accurate communication with 
     the necessary teams to handle critical situations.
+  max_iter: 5
