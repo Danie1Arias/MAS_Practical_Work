@@ -1,17 +1,30 @@
-research_task:
+secure_zone:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is 2024.
+    Use the valencia.graphml file and the OSMnx Shortest Path Tool, get the locations to secure 
+    (longitude and latitude.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
+     A detailed list of the zones.
+  agent: rescue_supporter
 
-reporting_task:
+drive_to_emergency_site:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    With the OSMnx Shortest Path Tool, 
+    calculate the most efficient route from the origin to the destination using the 
+    'valencia.graphml' map file in {graph_path} . The destination coordinates are provided in 
+    {phone_call_details} (latitude and longitude). Ensure the route is optimized for 
+    the shortest distance or time.
   expected_output: >
-    A fully fledge reports with the mains topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+    Print the following information to the terminal:
+    - The origin coordinates (longitude and latitude)
+    - The destination coordinates (longitude and latitude) from {phone_call_details}
+    - The estimated travel distance between the two points
+    Ensure the output is formatted for readability.
+  agent: traffic_driver
+
+rescue_support:
+  description: >
+    Assist in rescuing the trapped individuals, providing support 
+    while the firefighting team handles extinguishing the fire and ensuring the safety of the area.
+  expected_output: >
+    print detailed list of persons who have been rescued
+  agent: rescue_supporter

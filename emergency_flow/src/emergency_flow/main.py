@@ -42,6 +42,15 @@ class EmergencyFlow(Flow[EmergencyState]):
     def activate_relevant_crews(self):
         """Activates the relevant Crews based on the phone call details"""
         print("Activating relevant crews based on call details:")
+        if (
+             self.state.phone_call_details.people_in_danger > 0
+        ): 
+            print("- Security Crew Active")
+            self.state.security_crew_active = True
+            SecurityCrew().crew().kickoff(inputs={
+                "phone_call_details": self.state.phone_call_details,
+                "graph_path": os.path.join(os.path.dirname(__file__), 'inputs', 'valencia.graphml')
+                })
 
         if (
             self.state.phone_call_details.fire_type != FireType.NONE
@@ -49,15 +58,6 @@ class EmergencyFlow(Flow[EmergencyState]):
             print("- Firefighter Crew Active")
             self.state.firefighter_crew_active = True
             # FirefighterCrew().crew().kickoff(inputs=self.state.phone_call_details)
-
-        if (
-            self.state.phone_call_details.severity == Severity.MEDIUM or
-            self.state.phone_call_details.severity == Severity.HIGH
-        ): 
-            print("- Security Crew Active")
-            self.state.security_crew_active = True
-            # SecurityCrew().crew().kickoff(inputs=self.state.phone_call_details)
-
         if (
             self.state.phone_call_details.people_in_danger > 0
         ): 
