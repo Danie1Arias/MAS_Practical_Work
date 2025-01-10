@@ -1,17 +1,26 @@
-research_task:
+drive_to_emergency_site:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is 2024.
+    Use the FileReadTool to load data from the 'fire_trucks.json' file in {data_path} and determine 
+    if there are any available firetrucks. Retrieve the origin's coordinates 
+    (longitude and latitude) from the file. Then, with the OSMnx Shortest Path Tool, 
+    calculate the most efficient route from the origin to the destination. The destination coordinates are provided in 
+    {phone_call_details} (latitude and longitude). Ensure the route is optimized for 
+    the shortest distance or time.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
+    Print the following information to the terminal:
+    - The origin coordinates (longitude and latitude)
+    - The destination coordinates (longitude and latitude) from {phone_call_details}
+    - The estimated travel distance between the two points
+    Ensure the output is formatted for readability.
+  agent: firefighter_driver
 
-reporting_task:
+extinguish_ordinary_fire:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    Simulate the situation of extinguishing an ordinary fire. Explain the steps you
+    would take to extinguish the fire, including the use of fire extinguishers, water,
+    or other tools. Consider the type of fire ('fire_type') from {phone_call_details}
+    to determine the most effective approach.
   expected_output: >
-    A fully fledge reports with the mains topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+    A FireReport object with the following attributes:
+    - Boolean value indicating if the fire was extinguished
+  agent: ordinary_firefighter

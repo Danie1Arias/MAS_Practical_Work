@@ -16,4 +16,7 @@ class PhoneCallDetails(BaseModel):
     latitude: float
     fire_type: str
     severity: int 
-    people_in_danger: int 
+    people_in_danger: int
+
+class FireReport(BaseModel):
+    extinguished: bool

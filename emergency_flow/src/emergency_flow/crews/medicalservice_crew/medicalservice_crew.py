@@ -2,7 +2,6 @@ from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import FileReadTool
 from emergency_flow.tools.OSMnxCustomTool import ShortestPathTool
-from typing import Dict
 
 @CrewBase
 class MedicalserviceCrew:
@@ -38,6 +37,7 @@ class MedicalserviceCrew:
 
     @task
     def treat_injured_people(self) -> Task:
+        print("Treating injured people")
         return Task(
             config=self.tasks_config['treat_injured_people'],
             output_file='src/emergency_flow/outputs/medicalservice_crew/treat_injured_people_report.md'

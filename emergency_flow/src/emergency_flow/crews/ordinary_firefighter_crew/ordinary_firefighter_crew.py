@@ -1,54 +1,55 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from crewai_tools import FileReadTool
+from emergency_flow.tools.OSMnxCustomTool import ShortestPathTool
+from emergency_flow.models.models import FireReport
 
-# Uncomment the following line to use an example of a custom tool
-# from ordinary_firefighter_crew.tools.custom_tool import MyCustomTool
-
-# Check our tools documentations for more information on how to use them
-# from crewai_tools import SerperDevTool
 
 @CrewBase
-class OrdinaryFirefighterCrew():
-	"""OrdinaryFirefighterCrew crew"""
+class OrdinaryFirefighterCrew:
+    """OrdinaryFirefighterCrew crew"""
 
-	agents_config = 'config/agents.yaml'
-	tasks_config = 'config/tasks.yaml'
+    agents_config = 'config/agents.yaml'
+    tasks_config = 'config/tasks.yaml'
 
-	@agent
-	def researcher(self) -> Agent:
-		return Agent(
-			config=self.agents_config['researcher'],
-			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
-			verbose=True
-		)
+    @agent
+    def firefighter_driver(self) -> Agent:
+        return Agent(
+            config=self.agents_config['firefighter_driver'],
+            tools=[ShortestPathTool(), FileReadTool()],
+            verbose=True,
+            llm='ollama/llama3.1'
+        )
 
-	@agent
-	def reporting_analyst(self) -> Agent:
-		return Agent(
-			config=self.agents_config['reporting_analyst'],
-			verbose=True
-		)
+    @agent
+    def ordinary_firefighter(self) -> Agent:
+        return Agent(
+            config=self.agents_config['ordinary_firefighter'],
+            verbose=True,
+            llm='ollama/llama3.1'
+        )
 
-	@task
-	def research_task(self) -> Task:
-		return Task(
-			config=self.tasks_config['research_task'],
-		)
+    @task
+    def drive_to_emergency_site(self) -> Task:
+        return Task(
+            config=self.tasks_config['drive_to_emergency_site'],
+            output_file='src/emergency_flow/outputs/ordinary_firefighter_crew/drive_to_emergency_site_report.md'
+        )
 
-	@task
-	def reporting_task(self) -> Task:
-		return Task(
-			config=self.tasks_config['reporting_task'],
-			output_file='report.md'
-		)
-
-	@crew
-	def crew(self) -> Crew:
-		"""Creates the OrdinaryFirefighterCrew crew"""
-		return Crew(
-			agents=self.agents, # Automatically created by the @agent decorator
-			tasks=self.tasks, # Automatically created by the @task decorator
-			process=Process.sequential,
-			verbose=True,
-			# process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
-		)
+    @task
+    def extinguish_ordinary_fire(self) -> Task:
+        return Task(
+            config=self.tasks_config['extinguish_ordinary_fire'],
+            output_pydantic=FireReport,
+            output_file='src/emergency_flow/outputs/ordinary_firefighter_crew/extinguish_ordinary_fire_report.md'
+        )
+    
+    @crew
+    def crew(self) -> Crew:
+        """Creates the Ordinary Firefighter crew"""
+        return Crew(
+            agents=self.agents,
+            tasks=self.tasks,
+            process=Process.sequential,
+            verbose=True
+        )
