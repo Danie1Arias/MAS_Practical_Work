@@ -97,21 +97,24 @@ class EmergencyFlow(Flow[EmergencyState]):
         if self.state.fire_active == False:
             if (self.state.phone_call_details.people_in_danger > 0):
                 print("Activating Security Crew Active")
-                SecurityCrew().crew().kickoff(inputs={
+                result =SecurityCrew().crew().kickoff(inputs={
                     "phone_call_details": self.state.phone_call_details,
-                    "graph_path": os.path.join(os.path.dirname(__file__), 'inputs', 'valencia.graphml')
+                    "graph_path": os.path.join(os.path.dirname(__file__), 'inputs', 'valencia.graphml'),
+                    "report_path": os.path.join(os.path.dirname(__file__), 'outputs/security_crew', 'rescue_support_report.md')
                     })
 
-                people_in_danger_rescued = True
+                if (result['rescued_personnel'] == True):
+                    self.state.people_in_danger_rescued = True
 
-                if people_in_danger_rescued:
+                if self.state.people_in_danger_rescued:
                     print("People in danger rescued.")
                     self.state.people_in_danger_rescued = True
                 else:
                     print("Send reinforcement rescuers.")
                     SecurityCrew().crew().kickoff(inputs={
                         "phone_call_details": self.state.phone_call_details,
-                        "graph_path": os.path.join(os.path.dirname(__file__), 'inputs', 'valencia.graphml')
+                        "graph_path": os.path.join(os.path.dirname(__file__), 'inputs', 'valencia.graphml'),
+                        "report_path": os.path.join(os.path.dirname(__file__), 'outputs/security_crew', 'rescue_support_report.md')
                         })
                     self.state.people_in_danger_rescued = True
             else:

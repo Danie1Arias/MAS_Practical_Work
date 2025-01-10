@@ -2,7 +2,7 @@ from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import FileReadTool
 from emergency_flow.tools.OSMnxCustomTool import ShortestPathTool
-from typing import Dict
+from emergency_flow.models.models import RescuedPersonnelReport
 
 @CrewBase
 class SecurityCrew:
@@ -27,6 +27,14 @@ class SecurityCrew:
 			verbose=True,
 			llm='ollama/llama3.1'
 		)
+	
+	@agent
+	def rescuer_manager(self) -> Agent:
+		return Agent(
+			config=self.agents_config['rescuer_manager'],
+			verbose=True,
+			llm='ollama/llama3.1'
+		)
 
 	@task
 	def rescue_support(self) -> Task:
@@ -45,17 +53,24 @@ class SecurityCrew:
 	
 	@task
 	def drive_to_emergency_site(self) -> Task:
-		print("Create rescue individuals report")
 		return Task(
 			config=self.tasks_config['drive_to_emergency_site'],
 			output_file='src/emergency_flow/outputs/security_crew/drive_to_emergency_site_report.md'
 		)
+	
 	@task
 	def drive_back_to_work_station(self) -> Task:
-		print("Create rescue individuals report")
 		return Task(
 			config=self.tasks_config['drive_back_to_work_station'],
 			output_file='src/emergency_flow/outputs/security_crew/drive_back_to_work_station.md'
+		)
+	
+	@task
+	def verify_rescue_accuracy(self) -> Task:
+		return Task(
+			config=self.tasks_config['verify_rescue_accuracy'],
+			output_pydantic=RescuedPersonnelReport,
+			output_file='src/emergency_flow/outputs/security_crew/verify_rescue_accuracy_report.md'
 		)
 
 	@crew

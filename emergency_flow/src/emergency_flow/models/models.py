@@ -20,3 +20,6 @@ class PhoneCallDetails(BaseModel):
 
 class FireReport(BaseModel):
     extinguished: bool
+
+class RescuedPersonnelReport(BaseModel):
+    rescued_personnel: bool

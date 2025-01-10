@@ -1,1 +1,1 @@
-The shortest distance between the origin location (39.4703, -0.3754) and the destination location (39.4645, -0.3877) in the city of Valencia is 2007 meters.
+The total time elapsed is approximately 60 minutes.

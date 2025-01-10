@@ -28,3 +28,12 @@ rescue_support:
   expected_output: >
     print detailed list of persons who have been rescued
   agent: rescue_supporter
+
+verify_rescue_accuracy:
+  description: >
+    Using the FileReadTool read the report in the {report_path} file and check if the list of people
+    rescued corresponds to the actual number of trapped individuals, provided in the {phone_call_details}.
+  expected_output: >
+    A RescuedPersonnelReport object with the following attributes:
+    - Boolean value indicating if the number of people rescued matches the actual number of trapped individuals
+  agent: rescuer_manager 
