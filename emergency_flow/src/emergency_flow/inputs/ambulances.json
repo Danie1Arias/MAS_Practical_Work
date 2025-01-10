@@ -1,7 +1,7 @@
 {
     "lapena_headquarters_ambulances": {
-        "longitude": 39.42416746713853,
-        "latitude": -0.34066421534219654,
+        "latitude": 39.42416746713853,
+        "longitude": -0.34066421534219654,
         "ambulances_available": 5
     }
 }

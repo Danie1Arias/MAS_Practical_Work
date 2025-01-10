@@ -33,12 +33,13 @@ treat_injured_people:
 drive_to_hospital:
   description: >
     Plan the transport of injured individuals from the emergency site to the hospital.
-    Consider the destination hospital's location, the current position of the ambulance, 
-    and traffic conditions if applicable. Use the OSMnx Shortest Path Tool to find the 
-    optimal route.
+    The origin coordinates are provided in {phone_call_details} (latitude and longitude).
+    In order to know the destination coordinates, use the FileReadTool to load the file
+    in the {hospital_data_path} directory and extract the hospital's coordinates to the
+    hospital that you consider that best suits the the current emergency situation.
   expected_output: >
     Print to the terminal:
     - The start and destination coordinates of the trip
-    - The estimated time and distance to the hospital
+    - The estimated distance to the hospital
     - A statement confirming arrival at the hospital
   agent: ambulance_driver

@@ -22,8 +22,7 @@ class ShortestPathTool(BaseTool):
     def _run(self, longitude_origin: float, latitude_origin: float,
              longitude_destination: float, latitude_destination: float) -> dict:
         try:
-            file_path = os.path.join('..', 'inputs', 'valencia.graphml')
-            graph = ox.load_graphml(filepath=file_path)
+            graph = ox.load_graphml(filepath='valencia.graphml')
             graph = ox.routing.add_edge_speeds(graph)
             graph = ox.routing.add_edge_travel_times(graph)
 

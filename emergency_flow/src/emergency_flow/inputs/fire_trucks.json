@@ -1,7 +1,7 @@
 {
     "central_fire_station": {
-        "longitude": 39.45441,
-        "latitude": -0.36713,
+        "latitude": 39.45441,
+        "longitude": -0.36713,
         "fire_trucks_available": 3
     }
 }
