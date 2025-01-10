@@ -1,10 +1,11 @@
-secure_zone:
+drive_back_to_work_station:
   description: >
-    Use the valencia.graphml file and the OSMnx Shortest Path Tool, get the locations to secure 
-    (longitude and latitude.
+    After finishing the detailed report on the people rescued, 
+    traffic_driver will proceed to return to the traffic office to submit the data and complete the necessary paperwork
   expected_output: >
-     A detailed list of the zones.
-  agent: rescue_supporter
+    Print the time elapsed from the accident to the traffic office registration.
+    Print total number of people rescued
+  agent: traffic_driver
 
 drive_to_emergency_site:
   description: >
@@ -14,10 +15,9 @@ drive_to_emergency_site:
     {phone_call_details} (latitude and longitude). Ensure the route is optimized for 
     the shortest distance or time.
   expected_output: >
-    Print the following information to the terminal:
-    - The origin coordinates (longitude and latitude)
-    - The destination coordinates (longitude and latitude) from {phone_call_details}
-    - The estimated travel distance between the two points
+    Print the origin coordinates (longitude and latitude)
+    Print the destination coordinates (longitude and latitude) from {phone_call_details}
+    Print the estimated travel distance between the two points
     Ensure the output is formatted for readability.
   agent: traffic_driver
 

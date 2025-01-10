@@ -20,14 +20,6 @@ class SecurityCrew:
 		)
 	
 	@agent
-	def security_supervisor(self) -> Agent:
-		return Agent(
-			config=self.agents_config['security_supervisor'],
-			verbose=True,
-			llm='ollama/llama3.1'
-		)
-	
-	@agent
 	def traffic_driver(self) -> Agent:
 		return Agent(
 			config=self.agents_config['traffic_driver'],
@@ -56,6 +48,14 @@ class SecurityCrew:
 		print("Create rescue individuals report")
 		return Task(
 			config=self.tasks_config['drive_to_emergency_site'],
+			output_file='src/emergency_flow/outputs/security_crew/drive_to_emergency_site_report.md'
+		)
+	@task
+	def drive_back_to_work_station(self) -> Task:
+		print("Create rescue individuals report")
+		return Task(
+			config=self.tasks_config['drive_back_to_work_station'],
+			output_file='src/emergency_flow/outputs/security_crew/drive_back_to_work_station.md'
 		)
 
 	@crew
