@@ -48,7 +48,7 @@ class SecurityCrew:
 		return Task(
 			config=self.tasks_config['rescue_support'],
 			parameters=details,
-			output_file='rescue_individuals_names.md'
+			output_file='src/emergency_flow/outputs/security_crew/rescue_support_report.md'
 		)
 	
 	@task

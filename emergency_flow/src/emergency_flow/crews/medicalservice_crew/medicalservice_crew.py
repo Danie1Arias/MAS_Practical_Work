@@ -33,13 +33,14 @@ class MedicalserviceCrew:
         print("Driving to the emergency site")
         return Task(
             config=self.tasks_config['drive_to_emergency_site'],
+            output_file='src/emergency_flow/outputs/medicalservice_crew/drive_to_emergency_site_report.md'
         )
 
     @task
     def treat_injured_people(self) -> Task:
         return Task(
             config=self.tasks_config['treat_injured_people'],
-            output_file='report.md'
+            output_file='src/emergency_flow/outputs/medicalservice_crew/treat_injured_people_report.md'
         )
     
     @task
@@ -47,6 +48,7 @@ class MedicalserviceCrew:
         print("Driving to the hospital")
         return Task(
             config=self.tasks_config['drive_to_hospital'],
+            output_file='src/emergency_flow/outputs/medicalservice_crew/drive_to_hospital_report.md'
         )
 
     @crew

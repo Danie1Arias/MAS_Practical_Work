@@ -25,6 +25,7 @@ class EmergencyServiceCrew():
 		return Task(
 			config=self.tasks_config['read_emergency_report'],
 			output_pydantic=PhoneCallDetails,
+			output_file='src/emergency_flow/outputs/emergencyservice_crew/read_emergency_report.md'
 		)
 
 	@crew

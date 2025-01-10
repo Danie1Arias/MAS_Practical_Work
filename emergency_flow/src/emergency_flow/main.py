@@ -47,10 +47,10 @@ class EmergencyFlow(Flow[EmergencyState]):
         ): 
             print("- Security Crew Active")
             self.state.security_crew_active = True
-            #SecurityCrew().crew().kickoff(inputs={
-            #    "phone_call_details": self.state.phone_call_details,
-            #    "graph_path": os.path.join(os.path.dirname(__file__), 'inputs', 'valencia.graphml')
-            #    })
+            SecurityCrew().crew().kickoff(inputs={
+                "phone_call_details": self.state.phone_call_details,
+                "graph_path": os.path.join(os.path.dirname(__file__), 'inputs', 'valencia.graphml')
+                })
 
         if (
             self.state.phone_call_details.fire_type != FireType.NONE
