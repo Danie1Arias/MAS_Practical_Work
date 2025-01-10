@@ -1,0 +1,1 @@
+The shortest distance and path between the fire trucks' locations is a total of 10,087 meters.

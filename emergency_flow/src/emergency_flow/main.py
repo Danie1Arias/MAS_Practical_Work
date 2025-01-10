@@ -5,6 +5,7 @@ from .crews.ordinary_firefighter_crew.ordinary_firefighter_crew import OrdinaryF
 from .crews.electrical_firefighter_crew.electrical_firefighter_crew import ElectricalFirefighterCrew
 from .crews.gas_firefighter_crew.gas_firefighter_crew import GasFirefighterCrew
 from .crews.emergencyservice_crew.emergencyservice_crew import EmergencyServiceCrew
+from .crews.reinforcement_firefighter_crew.reinforcement_firefighter_crew import ReinforcementFirefighterCrew
 from .crews.medicalservice_crew.medicalservice_crew import MedicalserviceCrew
 from .crews.security_crew.security_crew import SecurityCrew
 from .models.models import PhoneCallDetails, FireType, Severity
@@ -77,11 +78,13 @@ class EmergencyFlow(Flow[EmergencyState]):
 
         if (self.state.phone_call_details.severity != Severity.LOW and self.state.fire_active):
             print("- Reinforcement Firefighter Crew Active")
-            #FirefighterCrew().crew().kickoff(inputs={
-            #    "phone_call_details": self.state.phone_call_details,
-            #    "data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'ambulances.json'),
-            #    "hospital_data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'hospital_beds.json')
-            #})
+            result = ReinforcementFirefighterCrew().crew().kickoff(inputs={
+                "phone_call_details": self.state.phone_call_details,
+                "data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'fire_trucks.json')
+            })
+
+            if (result['extinguished'] == True):
+                self.state.fire_active = False
 
         if self.state.fire_active:
             return "send_reinforcement_firefighters"
@@ -94,10 +97,10 @@ class EmergencyFlow(Flow[EmergencyState]):
         if self.state.fire_active == False:
             if (self.state.phone_call_details.people_in_danger > 0):
                 print("Activating Security Crew Active")
-                #SecurityCrew().crew().kickoff(inputs={
-                #    "phone_call_details": self.state.phone_call_details,
-                #    "graph_path": os.path.join(os.path.dirname(__file__), 'inputs', 'valencia.graphml')
-                #    })
+                SecurityCrew().crew().kickoff(inputs={
+                    "phone_call_details": self.state.phone_call_details,
+                    "graph_path": os.path.join(os.path.dirname(__file__), 'inputs', 'valencia.graphml')
+                    })
 
                 people_in_danger_rescued = True
 
@@ -106,10 +109,10 @@ class EmergencyFlow(Flow[EmergencyState]):
                     self.state.people_in_danger_rescued = True
                 else:
                     print("Send reinforcement rescuers.")
-                    #SecurityCrew().crew().kickoff(inputs={
-                    #    "phone_call_details": self.state.phone_call_details,
-                    #    "graph_path": os.path.join(os.path.dirname(__file__), 'inputs', 'valencia.graphml')
-                    #    })
+                    SecurityCrew().crew().kickoff(inputs={
+                        "phone_call_details": self.state.phone_call_details,
+                        "graph_path": os.path.join(os.path.dirname(__file__), 'inputs', 'valencia.graphml')
+                        })
                     self.state.people_in_danger_rescued = True
             else:
                 self.state.people_in_danger_rescued = True
@@ -118,32 +121,24 @@ class EmergencyFlow(Flow[EmergencyState]):
     def activate_medical_services_crew (self):
         if self.state.people_in_danger_rescued:
             print("Activating Medical Services Crew Active")
-            #MedicalserviceCrew().crew().kickoff(inputs={
-            #    "phone_call_details": self.state.phone_call_details,
-            #    "data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'ambulances.json'),
-            #    "hospital_data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'hospital_beds.json')
-            #})
+            MedicalserviceCrew().crew().kickoff(inputs={
+                "phone_call_details": self.state.phone_call_details,
+                "data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'ambulances.json'),
+                "hospital_data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'hospital_beds.json')
+            })
 
             print("People rescued and attended by medical services. Emergency resolved.")
         
     @listen("send_reinforcement_firefighters")
     def activate_reinforcement_firefighter_crew (self):
         print("- Second Reinforcement Firefighter Crew Active")
-            #FirefighterCrew().crew().kickoff(inputs={
-            #    "phone_call_details": self.state.phone_call_details,
-            #    "data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'ambulances.json'),
-            #    "hospital_data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'hospital_beds.json')
-            #})
-    
-    @listen(activate_security_crew)
-    def activate_medical_services_crew (self):
-        if (self.state.phone_call_details.people_in_danger > 0): 
-            print("Activating Medical Services Crew Active")
-            #MedicalserviceCrew().crew().kickoff(inputs={
-            #    "phone_call_details": self.state.phone_call_details,
-            #    "data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'ambulances.json'),
-            #    "hospital_data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'hospital_beds.json')
-            #})
+        result = ReinforcementFirefighterCrew().crew().kickoff(inputs={
+            "phone_call_details": self.state.phone_call_details,
+            "data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'fire_trucks.json')
+        })
+
+        if (result['extinguished'] == True):
+            self.state.fire_active = False
             
 
 def kickoff():

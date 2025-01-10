@@ -6,7 +6,7 @@
 - **Latitude:** 39.46061969757309
 - **Longitude:** -0.36332447406737145
 - **Injured People:** 12
-- **Fire Severity:** 1
+- **Fire Severity:** 3
 
 ## Additional Information
 
