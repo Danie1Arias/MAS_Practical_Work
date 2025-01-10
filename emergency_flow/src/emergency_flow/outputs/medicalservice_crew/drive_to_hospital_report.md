@@ -1,7 +1,1 @@
-Estimated distance to the hospital: 2689 meters
-Start and destination coordinates of the trip: 
-Origin coordinates: Latitude: 39.46061969757309, Longitude: -0.36332447406737145
-Destination coordinates: Latitude: 39.47882, Longitude: -0.36078
-Arrival at the hospital confirmed!
-
-Note: The final answer is a direct print to the terminal with the required information.
+The shortest path between the origin and destination hospitals is not directly provided by the tools, but we can infer that the general hospital at latitude 39.46798 and longitude -0.40776 is the closest option to the origin location based on the information read from the file.

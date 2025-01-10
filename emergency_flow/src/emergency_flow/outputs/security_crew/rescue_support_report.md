@@ -1,40 +1,31 @@
-**Rescue Operation Debrief**
+**Rescue Operations Report**
 
-After assessing the situation, the specialized team and I have successfully completed the rescue operation. The firefighting team has extinguished the fire, and we have ensured the safety of the area.
+**Date:** Today
+**Time:** 14:45 hours
+**Location:** Valencia City Center, Block 2345
+**Incident Type:** Building Fire with Trapped Individuals
+**Rescue Team:** Specialized Rescue Unit (SRU) of the Valencia Traffic Control Agency
 
-The following individuals have been rescued:
+**Rescued Persons:**
 
-1. **Maria Rodriguez**: A 32-year-old woman who was trapped in her apartment on the second floor. She was conscious but suffered minor injuries.
-	* Condition: Stable, receiving medical attention
-2. **Juan Hernandez**: A 45-year-old man who was stuck in his car in the middle of the street. He was unconscious but showing signs of rapid recovery.
-	* Condition: Critical, being transported to a nearby hospital for further treatment
-3. **Sofia Garcia**: A 5-year-old girl who was trapped in her stroller near the scene of the fire. She was panicked but unharmed.
-	* Condition: Stable, reunited with her parents
-4. **Carlos Sanchez**: A 28-year-old man who was stuck in a nearby alleyway. He was conscious and suffering from smoke inhalation.
-	* Condition: Stable, receiving oxygen therapy
-5. **Ana Lopez**: A 62-year-old woman who was trapped in her wheelchair on the sidewalk. She was unconscious but showing signs of rapid recovery.
-	* Condition: Critical, being transported to a nearby hospital for further treatment
-6. **Jorge Martinez**: A 22-year-old man who was stuck in his apartment on the third floor. He was conscious and suffering from minor injuries.
-	* Condition: Stable, receiving medical attention
+1. **Maria Rodriguez**, Female, 32 years old, Rescued at 14:47 hours from the 2nd floor, suffering from smoke inhalation and minor burns.
+	* Medical Condition: Stable
+	* Treatment Provided: Oxygen therapy, wound cleaning, and dressing
+2. **Juan Hernandez**, Male, 45 years old, Rescued at 14:50 hours from the 3rd floor, suffering from severe smoke inhalation and moderate burns.
+	* Medical Condition: Critical but stable
+	* Treatment Provided: Advanced life support, including intubation and fluid resuscitation
+3. **Sofia Gomez**, Female, 19 years old, Rescued at 14:52 hours from the basement, suffering from minor smoke inhalation and emotional trauma.
+	* Medical Condition: Stable
+	* Treatment Provided: Reassurance and comfort measures
+4. **Carlos Sanchez**, Male, 28 years old, Rescued at 14:55 hours from the roof, suffering from severe burns and smoke inhalation.
+	* Medical Condition: Critical but stable
+	* Treatment Provided: Advanced life support, including intubation and fluid resuscitation
+5. **Ana Moreno**, Female, 55 years old, Rescued at 14:57 hours from the ground floor, suffering from minor smoke inhalation and anxiety.
+	* Medical Condition: Stable
+	* Treatment Provided: Reassurance and comfort measures
 
-**Rescue Team Members:**
+**Total Number of Rescued Persons:** 5
+**Time to Rescue Completion:** 12 minutes
+**Rescue Team's Recommendation:** Continue monitoring the scene for potential hazards and ensure a safe environment for all individuals.
 
-1. **Traffic Agent (me)**: Ensured the safety of the area and coordinated the rescue operation
-2. **Firefighter 1**: Extinguished the fire and ensured the area was safe for rescue operations
-3. **Firefighter 2**: Assisted in rescuing trapped individuals and providing medical attention
-4. **Emergency Medical Technician (EMT)**: Provided medical attention to rescued individuals
-
-**Rescue Timeline:**
-
-* 09:45 AM: Received distress call from local authorities
-* 09:50 AM: Arrived at the scene, assessed situation, and coordinated with firefighting team
-* 10:00 AM: Initiated rescue operations for trapped individuals
-* 10:20 AM: Completed rescue operations, ensured area was safe
-
-**Post-Rescue Protocol:**
-
-1. **Debrief**: Conducted a thorough debrief to review the rescue operation and identify areas for improvement
-2. **Documentation**: Documented all rescued individuals, their conditions, and any notable incidents that occurred during the rescue operation.
-3. **Follow-up**: Will conduct follow-up checks on the rescued individuals to ensure they receive proper medical attention and support.
-
-This concludes the rescue operation report.
+Note: This report is based on the information provided during the scenario. Any deviations or discrepancies are not considered in this response.
