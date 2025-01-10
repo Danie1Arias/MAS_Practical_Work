@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 from pydantic import BaseModel
-from crewai.flow.flow import Flow, listen, start, router
+from crewai.flow.flow import Flow, listen, start, router, or_
 from .crews.emergencyservice_crew.emergencyservice_crew import EmergencyServiceCrew
-from .crews.firefighter_crew.firefighter_crew import FirefighterCrew
 from .crews.medicalservice_crew.medicalservice_crew import MedicalserviceCrew
 from .crews.security_crew.security_crew import SecurityCrew
-from .crews.models.models import PhoneCallDetails, FireType, Severity
+from .models.models import PhoneCallDetails, FireType, Severity
 import os
 
 class EmergencyState(BaseModel):
@@ -81,29 +80,30 @@ class EmergencyFlow(Flow[EmergencyState]):
             return "fire_extinguished"
             
         
-    @listen("fire_extinguished")
+    @listen(or_("fire_extinguished", "activate_reinforcement_firefighter_crew"))
     def activate_security_crew(self):
-        if (self.state.phone_call_details.people_in_danger > 0):
-            print("Activating Security Crew Active")
-            #SecurityCrew().crew().kickoff(inputs={
-            #    "phone_call_details": self.state.phone_call_details,
-            #    "graph_path": os.path.join(os.path.dirname(__file__), 'inputs', 'valencia.graphml')
-            #    })
-
-            people_in_danger_rescued = True
-
-            if people_in_danger_rescued:
-                print("People in danger rescued.")
-                self.state.people_in_danger_rescued = True
-            else:
-                print("Send reinforcement rescuers.")
+        if self.state.fire_active == False:
+            if (self.state.phone_call_details.people_in_danger > 0):
+                print("Activating Security Crew Active")
                 #SecurityCrew().crew().kickoff(inputs={
                 #    "phone_call_details": self.state.phone_call_details,
                 #    "graph_path": os.path.join(os.path.dirname(__file__), 'inputs', 'valencia.graphml')
                 #    })
+
+                people_in_danger_rescued = True
+
+                if people_in_danger_rescued:
+                    print("People in danger rescued.")
+                    self.state.people_in_danger_rescued = True
+                else:
+                    print("Send reinforcement rescuers.")
+                    #SecurityCrew().crew().kickoff(inputs={
+                    #    "phone_call_details": self.state.phone_call_details,
+                    #    "graph_path": os.path.join(os.path.dirname(__file__), 'inputs', 'valencia.graphml')
+                    #    })
+                    self.state.people_in_danger_rescued = True
+            else:
                 self.state.people_in_danger_rescued = True
-        else:
-            self.state.people_in_danger_rescued = True
             
     @listen(activate_security_crew)
     def activate_medical_services_crew (self):
@@ -116,7 +116,7 @@ class EmergencyFlow(Flow[EmergencyState]):
             #})
         
     @listen("send_reinforcement_firefighters")
-    def activate_reinforcement (self):
+    def activate_reinforcement_firefighter_crew (self):
         print("- Second Reinforcement Firefighter Crew Active")
             #FirefighterCrew().crew().kickoff(inputs={
             #    "phone_call_details": self.state.phone_call_details,

@@ -1,7 +1,7 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import FileReadTool
-from emergency_flow.crews.models.models import PhoneCallDetails
+from emergency_flow.models.models import PhoneCallDetails
 
 
 @CrewBase
