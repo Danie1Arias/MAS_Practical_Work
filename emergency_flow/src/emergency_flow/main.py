@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from crewai.flow.flow import Flow, listen, start, router, or_
 from .crews.ordinary_firefighter_crew.ordinary_firefighter_crew import OrdinaryFirefighterCrew
 from .crews.electrical_firefighter_crew.electrical_firefighter_crew import ElectricalFirefighterCrew
+from .crews.gas_firefighter_crew.gas_firefighter_crew import GasFirefighterCrew
 from .crews.emergencyservice_crew.emergencyservice_crew import EmergencyServiceCrew
 from .crews.medicalservice_crew.medicalservice_crew import MedicalserviceCrew
 from .crews.security_crew.security_crew import SecurityCrew
@@ -41,16 +42,18 @@ class EmergencyFlow(Flow[EmergencyState]):
     @router(attend_emergency_call)
     def activate_firefighters_crew(self):
         """Activates the relevant Firefighter crew based on the call details"""
+
         print("Activating relevant firefighter crew.")
         
         if (self.state.phone_call_details.fire_type == FireType.GAS):
             print("- Gas Firefighter Crew Active")
-            #FirefighterCrew().crew().kickoff(inputs={
-            #    "phone_call_details": self.state.phone_call_details,
-            #    "data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'ambulances.json'),
-            #    "hospital_data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'hospital_beds.json')
-            #})
-            self.state.fire_active = False
+            result = GasFirefighterCrew().crew().kickoff(inputs={
+                "phone_call_details": self.state.phone_call_details,
+                "data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'fire_trucks.json')
+            })
+
+            if (result['extinguished'] == True):
+                self.state.fire_active = False
 
         if (self.state.phone_call_details.fire_type == FireType.ELECTRICAL):
             print("- Electrical Firefighter Crew Active")
@@ -120,6 +123,8 @@ class EmergencyFlow(Flow[EmergencyState]):
             #    "data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'ambulances.json'),
             #    "hospital_data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'hospital_beds.json')
             #})
+
+            print("People rescued and attended by medical services. Emergency resolved.")
         
     @listen("send_reinforcement_firefighters")
     def activate_reinforcement_firefighter_crew (self):
