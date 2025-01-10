@@ -2,9 +2,9 @@ from pydantic import BaseModel
 
 class FireType():
     NONE = 0
-    ORDINARY = 1
-    ELECTRICAL = 2
-    GAS = 3
+    ORDINARY = "ORDINARY"
+    ELECTRICAL = "ELECTRICAL"
+    GAS = "GAS"
 
 class Severity():
     HIGH = 1
