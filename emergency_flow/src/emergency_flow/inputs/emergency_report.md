@@ -2,7 +2,7 @@
 
 ## Fire Incident Overview
 
-- **Fire Type:** ORDINARY
+- **Fire Type:** ELECTRICAL
 - **Latitude:** 39.46061969757309
 - **Longitude:** -0.36332447406737145
 - **Injured People:** 12

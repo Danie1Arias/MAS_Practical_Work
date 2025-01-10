@@ -2,6 +2,7 @@
 from pydantic import BaseModel
 from crewai.flow.flow import Flow, listen, start, router, or_
 from .crews.ordinary_firefighter_crew.ordinary_firefighter_crew import OrdinaryFirefighterCrew
+from .crews.electrical_firefighter_crew.electrical_firefighter_crew import ElectricalFirefighterCrew
 from .crews.emergencyservice_crew.emergencyservice_crew import EmergencyServiceCrew
 from .crews.medicalservice_crew.medicalservice_crew import MedicalserviceCrew
 from .crews.security_crew.security_crew import SecurityCrew
@@ -53,11 +54,13 @@ class EmergencyFlow(Flow[EmergencyState]):
 
         if (self.state.phone_call_details.fire_type == FireType.ELECTRICAL):
             print("- Electrical Firefighter Crew Active")
-            #FirefighterCrew().crew().kickoff(inputs={
-            #    "phone_call_details": self.state.phone_call_details,
-            #    "data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'ambulances.json'),
-            #    "hospital_data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'hospital_beds.json')
-            #})
+            result = ElectricalFirefighterCrew().crew().kickoff(inputs={
+                "phone_call_details": self.state.phone_call_details,
+                "data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'fire_trucks.json')
+            })
+
+            if (result['extinguished'] == True):
+                self.state.fire_active = False
 
         if (self.state.phone_call_details.fire_type == FireType.ORDINARY):
             print("- Ordinary Firefighter Crew Active")
@@ -65,8 +68,6 @@ class EmergencyFlow(Flow[EmergencyState]):
                 "phone_call_details": self.state.phone_call_details,
                 "data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'fire_trucks.json')
             })
-
-            print("Ordinary Firefighter Crew report: ", result)
 
             if (result['extinguished'] == True):
                 self.state.fire_active = False
