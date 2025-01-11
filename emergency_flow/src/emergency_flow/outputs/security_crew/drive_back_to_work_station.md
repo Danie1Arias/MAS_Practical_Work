@@ -1,1 +1,0 @@
-The total time elapsed is approximately 60 minutes.

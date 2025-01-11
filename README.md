@@ -57,6 +57,8 @@ The simulation relies on input data stored in the src/inputs directory:
     - ```ambulances.json```: Contains information about ambulance resources.
     - ```fire_trucks.json```: Details the available fire trucks and their specifications.
     - ```hospital_beds.json```: Tracks hospital bed availability for patient allocation.
+    - ```security_station.json```: Contains information about the workstation coordinates.
+
 
 2. **Phone Call Simulation**
     - ```emergency_report.md```: Simulates the phone call received by the Emergency Service Crew, providing incident details.

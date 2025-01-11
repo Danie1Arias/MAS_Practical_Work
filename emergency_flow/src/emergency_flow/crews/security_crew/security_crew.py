@@ -59,13 +59,6 @@ class SecurityCrew:
 		)
 	
 	@task
-	def drive_back_to_work_station(self) -> Task:
-		return Task(
-			config=self.tasks_config['drive_back_to_work_station'],
-			output_file='src/emergency_flow/outputs/security_crew/drive_back_to_work_station.md'
-		)
-	
-	@task
 	def verify_rescue_accuracy(self) -> Task:
 		return Task(
 			config=self.tasks_config['verify_rescue_accuracy'],

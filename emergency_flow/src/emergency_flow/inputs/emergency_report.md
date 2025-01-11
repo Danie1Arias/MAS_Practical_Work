@@ -2,7 +2,7 @@
 
 ## Fire Incident Overview
 
-- **Fire Type:** GAS
+- **Fire Type:** ELECTRICAL
 - **Latitude:** 39.46061969757309
 - **Longitude:** -0.36332447406737145
 - **Injured People:** 12
@@ -21,3 +21,4 @@
 - **Evacuation of Injured:** Immediate attention needed to evacuate the 12 injured people and provide medical care.
 - **Fire Containment:** Firefighters are needed to contain the gas explosion risk and prevent further damage to the surroundings.
 - **Additional Support Needed:** Medical teams to assist with the injured, and police for traffic control around the industrial zone.
+

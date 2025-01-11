@@ -99,7 +99,7 @@ class EmergencyFlow(Flow[EmergencyState]):
                 print("Activating Security Crew Active")
                 result =SecurityCrew().crew().kickoff(inputs={
                     "phone_call_details": self.state.phone_call_details,
-                    "graph_path": os.path.join(os.path.dirname(__file__), 'inputs', 'valencia.graphml'),
+                    "data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'security_station.json'),
                     "report_path": os.path.join(os.path.dirname(__file__), 'outputs/security_crew', 'rescue_support_report.md')
                     })
 
@@ -113,7 +113,7 @@ class EmergencyFlow(Flow[EmergencyState]):
                     print("Send reinforcement rescuers.")
                     SecurityCrew().crew().kickoff(inputs={
                         "phone_call_details": self.state.phone_call_details,
-                        "graph_path": os.path.join(os.path.dirname(__file__), 'inputs', 'valencia.graphml'),
+                        "data_path": os.path.join(os.path.dirname(__file__), 'inputs', 'security_station.json'),
                         "report_path": os.path.join(os.path.dirname(__file__), 'outputs/security_crew', 'rescue_support_report.md')
                         })
                     self.state.people_in_danger_rescued = True

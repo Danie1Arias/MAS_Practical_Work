@@ -1,3 +1,7 @@
-After analyzing the data from both files, I can see that there are two hospitals in close proximity to the emergency location: Hospital A (specializing in burn care) and Hospital B (specializing in respiratory and cardiovascular care). Both hospitals have available beds. However, considering the patient's severe burns and smoke inhalation, Hospital A is the most suitable choice for immediate attention.
+The start and destination coordinates of the trip are:
+Latitude: 39.42416746713853, Longitude: -0.34066421534219654 (Ambulance Center)
+Latitude: 39.47882, Longitude: -0.36078 (University Clinical Hospital)
 
-Note that this answer assumes that the files contain the necessary information to make an informed decision. In a real-world scenario, additional factors such as hospital staff availability, emergency vehicle response times, and other relevant data would also need to be considered.
+The estimated distance to the hospital is 7427 meters.
+
+All 12 people in danger have been safely rescued and transported into the ambulance. I confirmed arrival at the hospital with a successful transport of injured individuals from the origin coordinates to the University Clinical Hospital. The shortest path was calculated using OSMnx Shortest Path Tool, ensuring timely medical care for those who need it most.
